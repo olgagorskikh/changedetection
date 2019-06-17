@@ -1,0 +1,63 @@
+library(ggplot2)
+
+data <- movingEnergyDistance(sampledataset[,4:13], sampledataset[,1:3], tau=50)
+
+tao = (length(sampledataset[,1])-length(data))/2
+
+df2 = data.frame(y = data, x = (tao+1):(length(data)+tao))
+
+ggplot(data=df2, aes(x=x, y=y)) +
+  geom_line(size=0.65)+
+  xlab("Time") +
+  ylab("Energy distance") +
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(size=10),
+    axis.text = element_text(size = 10),
+
+    axis.title.y = element_text(size=10),
+
+    panel.grid.major = element_line(colour = "white"),
+    panel.grid.minor = element_blank()
+  )
+
+result <- changes(x = sampledataset[,4:13], y = sampledataset[,1:3], tau = 100, R=500)
+
+result<-c(60,280)
+model <- changingModel(x = sampledataset[,4:13], y = sampledataset[,1:3], l=3, result)
+print(model, digits=3)
+
+test <- changeTest(x1 = sampledataset[1:100,4:8], y1 = sampledataset[1:100,1:3],
+ x2 = sampledataset[101:200,4:8],y2 = sampledataset[101:200,1:3],
+ l=3, kappa = 500)
+
+distance <- energyDistance(x1 = sampledataset[1:200,4:13],
+                               y1 = sampledataset[1:200,1:3],
+                               x2 = sampledataset[201:400,4:13],
+                               y2 = sampledataset[201:400,1:3])
+
+
+test <- changeTest(x1 = sampledataset[1:100,4:13],
+                   y1 = sampledataset[1:100,1:3],
+                   x2 = sampledataset[101:200,4:13],
+                   y2 = sampledataset[101:200,1:3],
+                   l=3, R = 500)
+
+
+ggplot(data=df2, aes(x=x, y=y)) +
+  geom_line(size=0.65)+
+  xlab("Time") +
+  ylab("Energy distance") +
+  scale_x_continuous(breaks = c(1,59,283,400))+
+  theme_bw() +
+  theme(
+    axis.title.x = element_text(size=10),
+    axis.text = element_text(size = 10),
+
+    axis.title.y = element_text(size=10),
+
+    panel.grid.major = element_line(colour = "white"),
+    panel.grid.minor = element_blank()
+  )+
+  geom_vline(xintercept = 59, linetype="dotted")+
+  geom_vline(xintercept = 283, linetype="dotted")

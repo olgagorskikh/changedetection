@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1554206865864.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2444796355",
+    "id" : "95FC012A",
+    "lastKnownWriteTime" : 1559144299,
+    "last_content_update" : 1559144299423,
+    "path" : "C:/General/Projects/R/changedetection_v2.1/changedetection_v2/R/first_step_estimation.R",
+    "project_path" : "R/first_step_estimation.R",
+    "properties" : {
+        "cursorPosition" : "21,167",
+        "scrollLine" : "1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : true,
+    "source_window" : "",
+    "type" : "r_source"
+}
